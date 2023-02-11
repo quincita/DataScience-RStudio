@@ -1,7 +1,7 @@
 ---
 title: "Discussion 2"
 author: "dennis"
-date: "2023-01-20"
+date: "2023-02-10"
 output: pdf_document
 ---
 
@@ -15,8 +15,8 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
+```{r Master_eBook_List_by_Program}
+summary(Master_eBook_List_by_Program)
 ```
 
 ## Including Plots
@@ -26,5 +26,121 @@ You can also embed plots, for example:
 ```{r pressure, echo=FALSE}
 plot(pressure)
 ```
+#Data used is personal document used at work that list all general education books for all programs.  There are other tables in the list that break down program specific groups, but only the general education list was imported
+
+#Import Datafile
+library(readxl)
+Master_eBook_List_by_Program <- read_excel("C:\Users\Dennis Family\Desktop\Master eBook List by Program.xlsx")
+Master_eBook_List_by_Program <- read_excel
+
+#View Data File
+View(Master_eBook_List_by_Program)
+summary(Master_eBook_List_by_Program)
+
+Publisher         COURSE CODE        COURSE DESCRIPTION     ISBN              TITLE          
+ Length:18          Length:18          Length:18          Length:18          Length:18         
+ Class :character   Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+    AUTHOR          VitalSource eBook Link
+ Length:18          Length:18             
+ Class :character   Class :character      
+ Mode  :character   Mode  :character 
+
+#List of Publishers
+list(Master_eBook_List_by_Program$Publisher)
+
+[1]]
+ [1] "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON" 
+[10] "PEARSON"  "Elsevier" "Elsevier" "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "PEARSON"  "VS"  
+
+#List of course descriptions
+list(Master_eBook_List_by_Program$`COURSE DESCRIPTION`)
+
+[[1]]
+ [1] "Anatomy & Physiology I & II & Labs" "Anatomy & Physiology I & II & Labs"
+ [3] "Intro to Computers"                 "English Composition"               
+ [5] "College Writing"                    "Intro to Health Sciences"          
+ [7] "College Algebra"                    "College Algebra"                   
+ [9] "Statistics"                         "Medical Terminology"               
+[11] "Microbiology & Lab"                 "Nutrition"                         
+[13] "Critical Thinking"                  "General Physics"                   
+[15] "Intro to Psychology / Psychology"   "Abnormal Psychology"               
+[17] "Fundamentals of Speech / Speech"    NA 
+
+#List of book titles
+list(Master_eBook_List_by_Program$TITLE)
+
+[[1]]
+ [1] "Anatomy & Physiology and Disease 2/e"                              
+ [2] "Anatomy & Physiology and Disease 4/e"                              
+ [3] "GO! All in One: Computer Concepts and Applications"                
+ [4] "Writer's World, The: Essays With Enhanced Reading Strategies"      
+ [5] "Ideas and Aims for College Writing"                                
+ [6] "Health Science Fundamentals 2/e"                                   
+ [7] "College Algebra Essentials 5/e"                                    
+ [8] "Intermediate Algebra: A STEM Approach, 1e"                         
+ [9] "Elementary Statistics"                                             
+[10] "Medical Terminology: Get Connected! 2/e"                           
+[11] "Microbiology for the Healthcare Professional, 2e"                  
+[12] "Williams Essentials of Nutrition & Diet Therapy, 12e"              
+[13] "Becoming a Critical Thinker 6/e 2012"                              
+[14] "Conceptual Physics 12/e 2015"                                      
+[15] "Introduction to Psychology 3.1 1e COLLECTIONS VERSION (unscrubbed)"
+[16] "Abnormal Psychology"                                               
+[17] "Essential Elements of Public Speaking"                             
+[18] "Bookshelf Tutorial"                                                
+
+
+#List of authors
+list(Master_eBook_List_by_Program$AUTHOR)
+
+[[1]]
+ [1] "Colbert"            "Colbert"            "Gaskin"             "Gaetz"             
+ [5] "Taylor"             "Badasch"            "Blitzer"            "Woodbury"          
+ [9] "Triola"             "Frucht"             "VanMeter"           "Schlenker, Gilbert"
+[13] "Diestler"           "Hewitt"             "Collections"        "Hooley"            
+[17] "DeVito"             "VS Tech"           
+
+#List of course codes
+list(Master_eBook_List_by_Program$`COURSE CODE`)
+
+[[1]]
+ [1] "BSC 1085 &1086, HSC 120 & 130" "BSC 1085 &1086, HSC 120 & 130" "CTS 1050"                     
+ [4] "ENC1101"                       "ENC 402"                       "HSC 1000"                     
+ [7] "MAC 1105"                      "MAC 1105"                      "MAC 310"                      
+[10] "MEA 1239"                      "MIC 150/L"                     "NUT 180"                      
+[13] "PHI401"                        "PHY 2053"                      "PSY 1012"                     
+[16] "PSY 401"                       "SPC 1016"                      NA  
+
+#first few rows of data
+head(list(Master_eBook_List_by_Program))
+
+[[1]]
+# A tibble: 18 × 7
+   Publisher `COURSE CODE`                 `COURSE DESCRIPTION`               ISBN    TITLE AUTHOR Vital…¹
+   <chr>     <chr>                         <chr>                              <chr>   <chr> <chr>  <chr>  
+ 1 PEARSON   BSC 1085 &1086, HSC 120 & 130 Anatomy & Physiology I & II & Labs 978132… Anat… Colbe… https:…
+ 2 PEARSON   BSC 1085 &1086, HSC 120 & 130 Anatomy & Physiology I & II & Labs 978913… Anat… Colbe… https:…
+ 3 PEARSON   CTS 1050                      Intro to Computers                 978013… GO! … Gaskin https:…
+ 4 PEARSON   ENC1101                       English Composition                978013… Writ… Gaetz  https:…
+ 5 PEARSON   ENC 402                       College Writing                    978032… Idea… Taylor https:…
+ 6 PEARSON   HSC 1000                      Intro to Health Sciences           978013… Heal… Badas… https:…
+ 7 PEARSON   MAC 1105                      College Algebra                    978132… Coll… Blitz… https:…
+ 8 PEARSON   MAC 1105                      College Algebra                    978013… Inte… Woodb… NA     
+ 9 PEARSON   MAC 310                       Statistics                         978013… Elem… Triola n/a    
+10 PEARSON   MEA 1239                      Medical Terminology                978132… Medi… Frucht https:…
+11 Elsevier  MIC 150/L                     Microbiology & Lab                 978032… Micr… VanMe… https:…
+12 Elsevier  NUT 180                       Nutrition                          978032… Will… Schle… https:…
+13 PEARSON   PHI401                        Critical Thinking                  978020… Beco… Diest… https:…
+14 PEARSON   PHY 2053                      General Physics                    978032… Conc… Hewitt https:…
+15 PEARSON   PSY 1012                      Intro to Psychology / Psychology   978013… Intr… Colle… https:…
+16 PEARSON   PSY 401                       Abnormal Psychology                978013… Abno… Hooley https:…
+17 PEARSON   SPC 1016                      Fundamentals of Speech / Speech    978013… Esse… DeVito https:…
+18 VS        NA                            NA                                 BOOKSH… Book… VS Te… https:…
+# … with abbreviated variable name ¹​`VitalSource eBook Link`
+  
+  #barplot of publishers
+barplot(table(Master_eBook_List_by_Program$Publisher))
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
