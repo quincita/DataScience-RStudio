@@ -1,0 +1,199 @@
+---
+title: "Week 7 Discussion"
+author: "Quincita DEnnis"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+# Code
+
+```{r, echo = FALSE}
+# set up options & libraries
+knitr::opts_chunk$set(echo = FALSE)
+# load the required package
+library(dplyr)
+library(tidyverse)
+library(skimr)
+library(moderndive)
+library(kableExtra)
+
+# read the dataset
+car_seat_sales <- read.csv("car_seats_sales.csv")
+# summary stats
+
+# create the regression model
+model1 <- lm(Sales ~ Urban + US + Age + Education + Income, data = car_seat_sales)
+
+# summarize the regression results
+summary(model1)
+
+
+# create the regression model
+model2 <- lm(Sales ~ Advertising, data = car_seat_sales)
+
+# summarize the regression results
+summary(model2)
+```
+
+# Analysis
+
+## Links
+
+Github Link: 
+
+Data Source Link: https://www.kaggle.com/datasets/mohannapd/linear-regression-sales-prediction-of-carseats?resource=download
+
+## Background on Data Set
+
+
+
+The Carseats data set tracks sales information for car seats. It has 400 observations (each at a different store) and 11 variables (listed below). The purpuse is to predict the number of unit sales in each condition.
+
+Sales: unit sales in thousands
+
+CompPrice: price charged by competitor at each location
+
+Income: community income level in 1000s of dollars
+
+Advertising: local ad budget at each location in 1000s of dollars
+
+Population: regional pop in thousands
+
+Price: price for car seats at each site
+
+ShelveLoc: Bad, Good or Medium indicates quality of shelving location
+
+Age: age level of the population
+
+Education: ed level at location
+
+Urban: Yes/No
+
+US: Yes/No
+
+## Research Question & Motivation
+
+We want to understand how community demographics affect the total sales of child car seats.  We have variables indicating whether the store is in an urban or rural location, and whether the store is in the US or not, we also have information on college level attendance and or graduation. Do these attributes affect car seat sales?
+
+Understanding the if these factors affect sales can be useful to the store that sales the car seats  and sales executives within car seat manufacturing companies. 
+
+Research Question 1: Do community demographics and store location affect car seat sales?
+
+Research Question 2: Does the advertising budget affect car seat sales?
+
+## Data Description & Descriptive Statistics
+
+The data consists of 400 stores with 11 categorical values of sales characteristics. The columns used for this analysis are:
+
+-   **Sales:** Total car seats sold, in thousands ranging from 0 to 16.27 thousand, with an average of 7.5 thousand.
+
+-   **Advertising:** Advertising Budget, in thousands. This ranges from $0 to $29 thousand with an average of $6.7 thousand.
+
+-   **Urban:** Was the store loacted in an urban or rural area? There were 282 urban stores and 118  rural stores totaling 400 stores.
+
+-   **US:** Was the store located in the United States? There were 258 stores located in the  U.S. and 142 stores were not in the U.S.
+
+## Data Analysis
+
+We will load the data, view the data, and run two regression models to analyze the two research questions regarding demographics of the community and advertising budgets with regard to how they affect care seat sales.
+
+```{r}
+> # read the dataset
+> 
+> library(readr)
+> CarSeats <- read_csv("archive (36)/CarSeats.csv")
+Rows: 400 Columns: 12                                                                                                           
+── Column specification ─────────────────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): ShelveLoc, Urban, US
+dbl (9): No, Sales, CompPrice, Income, Advertising, Population, Price, Age, Education
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+> View(CarSeats)
+> 
+> 
+> # create the regression model
+> model1 <- lm(Sales ~ Urban + US + Age + Education + Income, data = CarSeats)
+> 
+> # summarize the regression results
+> summary(model1)
+
+Call:
+lm(formula = Sales ~ Urban + US + Age + Education + Income, data = CarSeats)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-8.456 -1.805 -0.146  1.731  8.366 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.641493   0.968918   8.919  < 2e-16 ***
+UrbanYes    -0.140781   0.295422  -0.477  0.63395    
+USYes        0.976534   0.283009   3.451  0.00062 ***
+Age         -0.040403   0.008310  -4.862 1.68e-06 ***
+Education   -0.032931   0.051593  -0.638  0.52366    
+Income       0.013638   0.004836   2.820  0.00504 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.688 on 394 degrees of freedom
+Multiple R-squared:  0.1055,	Adjusted R-squared:  0.09419 
+F-statistic: 9.298 on 5 and 394 DF,  p-value: 2.199e-08
+
+> # For this regression model the response variable is sales and the explanatory variables are Urban, U.S., Age, Education, and Income.  
+The model explains only 10.55% of the sales variance.  This is quite low.  The coefficients for the variables income and U.S. are statistically significant.
+This means that these two variables do significantly impact sales.  The coefficient for age is also significant, indicating that it also affects sales.  
+The coefficients for Urban and Education are not statistically significant, indicating that they do not have a significant impact on sales. 
+> 
+> # create the regression model
+> model2 <- lm(Sales ~ Advertising, data = CarSeats)
+> 
+> # summarize the regression results
+> summary(model2)
+
+Call:
+lm(formula = Sales ~ Advertising, data = CarSeats)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-7.3770 -1.9634 -0.1037  1.7222  8.3208 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)   6.7370     0.1925  35.007  < 2e-16 ***
+Advertising   0.1144     0.0205   5.583 4.38e-08 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.723 on 398 degrees of freedom
+Multiple R-squared:  0.07263,	Adjusted R-squared:  0.0703 
+F-statistic: 31.17 on 1 and 398 DF,  p-value: 4.378e-08
+
+ # For this regression model the response variable is sales and the explanatory variable is advertising.  
+The model explains only 7.26% of the sales variance.  This is not high, but it is statistically significant at the 5% level , 
+which means that it does impact sales to some degree. 
+
+## Findings
+
+1. Advertising budget affects sales (6.7370 + 0.114 unit increase).
+
+2. U.S., income, and age affect sales  
+
+#Who can this data benefit?  This information could be useful to companys that sell car seats because it provides insights on what factors 
+positivey impact sales (specifically budget and certain community demographics).   This could assist the marketing department in strategies to 
+increase sales as well as future store locations if an expansion or store relocation is necessary to remain relevant in the market.
+Footer
+© 2023 GitHub, Inc.
+Footer navigation
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
