@@ -94,9 +94,10 @@ All predictor variables in this model have pvalues that are less than 0.05.  Thi
 they are statistically significant in explaining the response variables.
 ## Links
 
-Github Link: 
+Github Link: https://github.com/quincita/DataScience-RStudio/blob/3f77225c7cb9646dbc88ce625aea79aabf5dcdc9/week%208
 
-Data Source Link: 
+Data Source Link: /kaggle/input/parkinsons-telemonitoring-databut I could not find the file in UCI)
+(original data from UCI, 
 
 ## Research Question & Motivation
 While the original research was meant to evaluate the relationship between the patient’s vocal patterns versus severity of Parkin’s symptoms,
