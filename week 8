@@ -54,53 +54,86 @@ F-statistic:   238 on 3 and 5871 DF,  p-value: < 2.2e-16
 ```
 
 # Analysis
+The regression data shows us the results of a linear regression analysis
+The regression model used is trying to estimate the relationship between 
+total UPDRS score (a measure of Parkinsons symptom severity) and 3 predictor 
+variables (age, sex, and jitter %) with the Parkinsons data.  
 
+The intercept coefficient of 4.84424 gives us the base estimated mean total UPDRS score.
+
+The age coefficient of 0.36995 gives us the estimate increase in total UPDRS score as the patient 
+ages annually provided that all other variables remain constant.
+
+The sex coefficient of -2.01200 tells us that the estimated difference in total UPDRS between 
+males and females (provided that all other variables are constant) shows that males have a lower 
+estimated total UPDRS score than females. 
+
+The jitter% coefficient of 136.43546 represents the estimated increase in total UPDRS score for a 
+1 unit increase in jitter% provided that all other variables are constant.
+
+The output of summary() gives us the information we need to draw some conclusions 
+about the data.  The table identifies that the coefficients and the predictor variables. 
+The coefficient for age is 0.36995, this means that as age increased annually by 1 unit 
+the total UPDRS score is expected to increase by 0.36995 units provided that all other
+variables are constant
+
+The Signif codes column identifies if the variable is statistically significant.  
+For our model all evaluated variables are statistically significant with regard to this data.
+
+The Multiple Rsquared measures how well the data fits the model used. 
+This model explains  (0.1084) 10.84% of the variation with regrard to total UPDRS score and 
+how it is affected by age, sex, and jitter%.  The Adjusted 
+R-squared is slightly lower (0.108) is similiar and accounts for the predictor variables.
+
+The F statistic and pvalue tells the researcher if the model is statistically significant. 
+In this instance the Fstatistic is 238 with 3 and 5871 degrees of freedom and tells us that all 
+coefficients  are equal to zero except the intercept.  The small pvalue is less
+than 2.2e-16, which tells us that this model is significant.  The p values associated with each 
+coefficient provides evidence for the statistical significance of the predictor variables. 
+All predictor variables in this model have pvalues that are less than 0.05.  This tells us that 
+they are statistically significant in explaining the response variables.
 ## Links
 
-Github Link: <https://github.com/mvered/DMA3300/tree/main/week_1>
+Github Link: 
 
-Data Source Link: <https://www.kaggle.com/datasets/datafiniti/womens-shoes-prices>
+Data Source Link: 
 
 ## Research Question & Motivation
-
-We're interested in assessing what the average price of women's shoes are, how much the price of a pair of shoes varies between its highest and lowest listed prices, and whether shoes are actually cheaper on sale. It is possible that expensive shoes may be the ones that tend to go on sale more often, meaning shoes on sale could be more expensive than shoes not on sale. Or, conventional wisdom could hold true and sale shoes could be cheaper.
-
-These questions would be useful for a potential purchaser of women's shoes. But this information could also be helpful if you were working for a shoe business - knowing information abut how competitors price their shoes could help you to price your shoes competitively with the marketplace.Description of Data
+While the original research was meant to evaluate the relationship between the patient’s vocal patterns versus severity of Parkin’s symptoms,
+I would like to see if we are able to use the data to predict the severity of Parkin’s Disease motor symptoms using the patient’s age, sex, and jitter_pct.   
+This information could prepare and reassure the patient and their family on how the disease will progress as the patient ages. 
 
 ## Background on Data
 
-This data set contains information on women's shoes, including their brand, manufacturer, color, and price. The data was scrapped from online shopping platforms by the company Datafiniti. It was originally uploaded in 2019 based on data collected from online shopping platforms between 2015 - 2018.
+This data set includes information on patients with Parkinson's disease. The data was compiled by Athanasios Tsanas and Max Little from the University of Oxford
+in 2009, drawing on data from 10 different medical centers. Recordings of patients' voices were captured by a biomedical device placed in patients' homes. 
+Voice recordings were then analyzed and attributes of their voice patterns quantified. The goal of the program was to provide data for clinicians to monitor 
+the progression of Parkinson's disease symptoms by tracking changes in their patients' voices over time.
+
+
 
 ## Description of Data & Descriptive Statistics
-
-There are 10,000 observations in this data set, each representing a particular shoe brand, model, and retailer combination.
+This dataset that was recorded in a csv file was gathered from 42 patients with Parkinson’s Disease, specifically the early stage of Parkinson’s.  
+The patients participated in a six-month trial of the telemonitoring devices that recorded them throughout their daily comings and goings.  
+The devices tracked and transmitted the patient data and sent the symptoms remotely to the researchers.  
+The collected data was used to predict the motor and total UPDRS scores from each patient’s voice recording data.
 
 Here are some key columns from the data set:
 
--   id: A unique id for each observation. No missing values.
+Columns in the data set were:
+Subject number
+Subject Age
+Subject Gender
+Time interval from base line recruitment date
+Motor UPDRS
+total UPDRS
+16 biomedical voice measures
 
--   dateAdded: Date the listing was first added to the data set. No missing values. The earliest date is 2015-05-04 and the most recent date is 2018-05-21. The median date was 2017-11-15.
-
--   dateUpdated: Date the brand listing was most recently updated. No missing values. The earliest date is 2018-01-01 and the most recent date is 2018-10-23. The median date was 2018-02-01.
-
--   brand: A string listing the name of the brand of the shoes. No missing values.
-
--   colors: A string listing the colors available for each pair of shoes. Only about a quarter of rows have color information listed. 7,369 rows are missing color information.
-
--   manufacturer: This is the manufacturer of the shoe, if different from the brand. Most rows (9,473) have this field empty, indicating the brand and manufacturer are the same.
-
--   name: A string listing the name of the shoe model. No missing values.
-
--   prices.amountMax: The highest price listed online for this brand and model of shoe. No missing data. The the values in this column range from 5.87 - 359.99, with a mean of 69.22.
-
--   prices.amountMin: The lowest price listed online for this brand and model of shoe. No missing data. The values in this column range from 4.88 - 359.99, with a mean of 51.13.
-
--   prices.isSale: This column indicates whether an item was on sale at the time its price was recorded. This data is present for all rows in the data set.
 
 ## Findings
+This regression model helps us to understand how different factors affect Parkinsons Disease.  The model evaluates three factors (age, sex, and jitter (%).  
+Based on the data that was examined, age and Jitter% have a positive effect on Parkinsons, meaning as the patient ages they aremore likely to develop the disease. 
+The model also examined sex (male or female ).  This variable had a negative effect.  Upon further examination the data demonstrated 
+that males are more likely to have develop Parkinsons.  This information can benefit researchers and physicians that are trying to understand, delay, 
+treat, and or prevent the progression of the disease.
 
-1.  The average low price of women's shoes is \$`r mean(shoes$prices.amountMin)`. The average high price of women's shoes is \$`r mean(shoes$prices.amountMax)`.
-
-2.  The difference between high and low price (for the same pair of shoes), varies between no difference all the way to \$109.97 difference in price. The mean price difference is \$18.09 and the median price difference \$18.00.
-
-3.  The average minimum price for sale shoes is actually higher than for non-sale shoes (\$65.88 for sale shoes vs. \$50.88 for non-sale shoes). The average maximum price for sale shoes is also higher than for non-sale shoes (\$106.42 for sale shoes vs \$68.58 for non-sale shoes). So our hypothesis that more expensive shoes are more likely to go on sale is probably right. The conventional wisdom, that you should buy things when they're on sale, may be wrong in this case! Buying shoes just because they're on sale may mean you are buying shoes that are actually more expensive. For a shoe retailer looking at this data, it seems like competitors could be employig a strategy of making prices higher to begin with, then putting the shoes on sale. This might be a worthwhile tactic to try as a seller.
